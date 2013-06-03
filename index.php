@@ -4,37 +4,21 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <title>jnotes </title>
+  <title>Noteapp</title>
    
   <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.1/themes/base/jquery-ui.css" />
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
   <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
+  <script src="js/jquery.ui.touch-punch.min.js"></script>
   <link href='http://fonts.googleapis.com/css?family=Reenie+Beanie' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="css/style.css" />
   
-  
-  <style>
-  body{background-color:#666666;}
-  *:focus {
-    outline: 0;
-}
-  .note { width: 150px; height: 150px; padding: 0.5em; background-color:#FFFF99;font-family: 'Reenie Beanie', cursive; font-weight:400; font-size:26px; }
-.drag_handle {
-	background-color: #630;
-    position:absolute;
-    top:-8px; left:0px;
-    cursor:move;
-    width:176px; height:14px;
-    font-size:14px; line-height:14px;
-    font-weight:bold;
-    text-align:center;
-    border:0px solid #000;
-}
-  </style>
+ 
   <script>
   
   var idCount = 1;
   var dragCount = 1;
-  
+   var closeCount = 1;
   $(function() {
 
 $('#id1').draggable({stack: "div",handle: '.drag_handle'});
@@ -48,27 +32,19 @@ x=x+26;
 $( "#drag1").css( "width", x );
 } );
 
-
-  })
-
+})
 
 
-
-
-
-function newnote(){
-
- 
- // $("body").append('<div contenteditable="true" class="note"  ><div class="drag_handle"></div><p>Drag me around</p></div>')
+  function newnote(){
   var div = document.createElement('div');
   div.innerHTML = "Drag me around";  
   div.setAttribute('class', 'note');
   div.setAttribute('contenteditable', 'true');
   
-    idCount=idCount+1;
+  idCount=idCount+1;
   var id;
   id = "id" + idCount;
-   div.setAttribute('id', id);
+  div.setAttribute('id', id);
 
   document.body.appendChild(div);
   
@@ -78,11 +54,33 @@ function newnote(){
   dragCount=dragCount+1;
   var drag;
   drag = "drag" + idCount;
-   div.setAttribute('id', drag);
+  div.setAttribute('id', drag);
   document.getElementById(id).appendChild(div);
+ 
+
+  var div = document.createElement('div');
+ div.setAttribute('class', 'closebutton');
+ div.setAttribute('onClick', 'closenote()');
+ div.setAttribute("left", "0");
+ div.setAttribute("top", "0");
+   closeCount=closeCount+1;
+  var clos;
+  clos = "close" + closeCount;
+  div.setAttribute('id',clos);
   
+
+
+ document.getElementById(id).appendChild(div);
+ 
+ 
+ $('#' + clos).click(function(){
+    {$("#" + id ).remove();}
+});
+ 
+  function noteclose()
+{$("#id1" ).remove();}
   
- $(function() {
+$(function() {
 
 $('#' + id).draggable({stack: "div",handle: '.drag_handle'});
 $('#' + id).resizable({});
@@ -99,23 +97,25 @@ $('#' + drag).css( "width", x );
 	}
 	
 	
+function noteclose()
+{$("#id1").remove();}
 	
 	
-	
-	
-  </script>
+</script>
   
 </head>
 <body>
- 
+ <a href="https://github.com/sahillamba/noteapp"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_red_aa0000.png" alt="Fork me on GitHub"></a>
 <div contenteditable="true" class="note" id="id1" >
 <div class="drag_handle" id="drag1"></div>
-  <p>Drag me around</p>
+<div class="closebutton" onClick="noteclose()" id="close1"></div>
+<p>Drag me around</p>
 </div>
 
 <div>
 <button onClick="newnote()">New Note</button>
+
 </div> 
- 
+
 </body>
 </html>

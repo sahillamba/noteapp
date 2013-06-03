@@ -1,0 +1,31 @@
+body{background-color:#666666;}
+  *:focus {
+    outline: 0;
+}
+  .note { width: 150px; height: 150px; padding: 0.5em; background-color:#FFFF99;font-family: 'Reenie Beanie', cursive; font-weight:400; font-size:26px; }
+.drag_handle {
+	background-color: #630;
+    position:absolute;
+    top:-8px; left:0px;
+    cursor:move;
+    width:176px; height:14px;
+    font-size:14px; line-height:14px;
+    font-weight:bold;
+    text-align:center;
+    border:0px solid #000;
+}
+.drag_handle img{
+top:0px;
+left:-5px;
+}
+
+.closebutton {
+z-index:999;
+  background-image:url('../images/deleteButton.png');
+  background-position:left top;
+    height: 30px;
+    position: absolute;
+    left: -10px;
+    top: -12px;
+    width: 30px;
+}
