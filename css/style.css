@@ -21,6 +21,7 @@ left:-5px;
 
 .closebutton {
 z-index:999;
+cursor:pointer;
   background-image:url('../images/deleteButton.png');
   background-position:left top;
     height: 30px;
